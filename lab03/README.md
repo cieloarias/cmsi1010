@@ -1,5 +1,5 @@
-# CMSI 1010
+# Lab 3: Sharing is Caring
 
-This is my CMSI 1010 repository.
-
-It contains all my labs and assignments for the course.
+In this lab, we did not create any new files.
+Instead, we learned about, and practiced using,
+*Git* and *GitHub*.
