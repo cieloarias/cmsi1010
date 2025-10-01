@@ -27,8 +27,11 @@ def third_element(t):
     element. If t is not a tuple or has fewer than three elements,
     raise an IndexError.
     """
-    # replace the pass statement with your code
-    pass
+    if not isinstance (t,tuple):
+        raise TypeError
+    if len (t) < 3:
+        raise IndexError
+    return t(2)
 
 
 def reverse_pair(t):
@@ -38,8 +41,7 @@ def reverse_pair(t):
     If t is a tuple with more or fewer than two elements, raise a
     ValueError.
     """
-    # replace the pass statement with your code
-    pass
+   
 
 
 def middle_element_of_list(a):
@@ -59,8 +61,10 @@ def unique_elements(a):
     Return a set of unique elements from the input list a.
     If a is not a list, raise a TypeError.
     """
-    # replace the pass statement with your code
-    pass
+    if not isinstance (a, list):
+        raise TypeError 
+    result = set(a)
+
 
 
 def contains_duplicates(a):
