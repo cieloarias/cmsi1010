@@ -29,10 +29,9 @@ def third_element(t):
     """
     if not isinstance (t,tuple):
         raise TypeError
-    if len (t) < 3:
+    if len(t) < 3:
         raise IndexError
-    return t(2)
-
+    return t[2]
 
 def reverse_pair(t):
     """
@@ -41,7 +40,11 @@ def reverse_pair(t):
     If t is a tuple with more or fewer than two elements, raise a
     ValueError.
     """
-   
+    if type(t) is not tuple:
+        raise TypeError("Input must be a tuple")
+    if len(t) != 2:
+        raise ValueError("Tuple must have exactly two elements")
+    return (t[1], t[0])
 
 
 def middle_element_of_list(a):
@@ -52,8 +55,12 @@ def middle_element_of_list(a):
     elements, raise an IndexError. If a is not a list, raise a
     TypeError.
     """
-    # replace the pass statement with your code
-    pass
+    if type(a) is not list:
+        raise TypeError("Input must be a list")
+
+    if len(a) == 0:
+        raise IndexError("List is empty")
+    return a[(len(a) - 1) // 2]
 
 
 def unique_elements(a):
@@ -64,6 +71,7 @@ def unique_elements(a):
     if not isinstance (a, list):
         raise TypeError 
     result = set(a)
+    return result 
 
 
 
@@ -72,8 +80,16 @@ def contains_duplicates(a):
     Return True if the input list a contains any duplicate elements,
     and False otherwise. If a is not a list, raise a TypeError.
     """
-    # replace the pass statement with your code
-    pass
+    if type(a) is not list:
+        raise TypeError("Input must be a list")
+    for i in range(len(a)):
+        for j in range(i + 1, len(a)):
+            if a[i] == a[j]:   # found a duplicate
+                return True
+    
+    # if no duplicates found
+    return False
+    
 
 
 def is_superset(a, b):
@@ -81,8 +97,12 @@ def is_superset(a, b):
     Return True if set a is a superset of set b, and False otherwise.
     If either a or b is not a set, raise a TypeError.
     """
-    # replace the pass statement with your code
-    pass
+    if type(a) is not set or type(b) is not set:
+        raise TypeError("Both inputs must be sets")
+    for element in b:
+        if element not in a:
+            return False 
+    return True 
 
 
 def is_subset(a, b):
@@ -90,8 +110,12 @@ def is_subset(a, b):
     Return True if set a is a subset of set b, and False otherwise.
     If either a or b is not a set, raise a TypeError.
     """
-    # replace the pass statement with your code
-    pass
+    if type(a) is not set or type(b) is not set:
+        raise TypeError("Both inputs must be sets")
+    for element in a:
+        if element not in b:
+            return False
+    return True 
 
 
 def is_disjoint(a, b):
@@ -99,8 +123,12 @@ def is_disjoint(a, b):
     Return True if sets a and b are disjoint (i.e., have no elements in common),
     and False otherwise. If either a or b is not a set, raise a TypeError.
     """
-    # replace the pass statement with your code
-    pass
+    if type(a) is not set or type(b) is not set:
+        raise TypeError("Both inputs must be sets")
+    for element in a:
+        if element in b:
+            return False 
+    return True 
 
 
 def most_frequent_value_or_values(d):
@@ -111,9 +139,26 @@ def most_frequent_value_or_values(d):
     set (because there are no elements to count). If d is not a
     dictionary, raise a TypeError.
     """
-    # replace the pass statement with your code
-    pass
-
+    if type(d) is not dict:
+        raise TypeError("Input must be a dictionary")
+    if not d:
+        return set()
+    
+    counts = {}
+    for value in d.values():
+        if value in counts:
+            counts[value] += 1
+        else:
+            counts[value] = 1
+    
+    max_count = max(counts.values())
+    
+    most_frequent = set()
+    for value, count in counts.items():
+        if count == max_count:
+            most_frequent.add(value)
+    
+    return most_frequent
 
 def key_is_in_both_dictionaries(d1, d2, key):
     """
@@ -121,8 +166,13 @@ def key_is_in_both_dictionaries(d1, d2, key):
     and False otherwise. If either d1 or d2 is not a dictionary,
     raise a TypeError.
     """
-    # replace the pass statement with your code
-    pass
+    if type(d1) is not dict or type(d2) is not dict:
+        raise TypeError("Both inputs must be dictionaries")
+    if key in d1 and key in d2:
+        return True
+    else:
+        return False
+
 
 
 def word_frequencies(s):
@@ -136,8 +186,15 @@ def word_frequencies(s):
 
     If s is not a string, raise a TypeError.
     """
-    # replace the pass statement with your code
-    pass
+    if type(s) is not str:
+        raise TypeError("Input must be a string")
+    freq = {}
+    for word in s.split():
+        if word in freq:
+            freq[word] += 1 
+        else:
+            freq[word] = 1
+    return freq
 
 
 def _assert_raises(exception_type, func, *args):
