@@ -1,26 +1,3 @@
-# ----------------------------------------------------------------------
-# This is the file data_structures_cardio.py
-#
-# The intent is to give you practice with tuples, lists, sets, and
-# dictionaries.
-#
-# Complete the functions below.
-#
-# Each function has a docstring that describes what it should do, but
-# please see the unit tests at the bottom of the file for more
-# specific examples of what each function should return. To run
-# the tests, you can use the command
-#
-#     python3 -m unittest data_structures_cardio.py
-#
-# (or python depending on your system).
-#
-# Remove this comment, and all of the "replace the pass statement..."
-# comments, prior to submission. You can, and should, add your own
-# comments, but please remove all the comments that are here now.
-# ----------------------------------------------------------------------
-
-
 def third_element(t):
     """
     If t is a tuple with at least three elements, return the third
