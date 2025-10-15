@@ -6,6 +6,13 @@ class Person:
         self.mom = mom
         self.dad = dad
 
+    def is_sibling_of(self, other): #the reason we say self its because i'ts within the class
+        same_mom = self.mom is not None and other.mom is not None and self.mom is other.mom
+        same_dad = self.dad is not None and other.dad is not None and self.dad is other.dad
+        # Half or full, we don't care
+        return same_mom or same_dad  #you have a brother or sister if you have the same mom or dad so u write exactly that
+
+
     def __str__(self):
         span = f"({self.born or '?'}-{self.died or '?'})"
         mom = f"{self.mom.name if self.mom is not None else '?'}"
@@ -25,7 +32,9 @@ marie = Person("Marie Ramos", born="1826", died="1904", mom=julie, dad=agenor)
 marge = Person("Marguerite Cadeneth", born="1804", died="1870")
 giacamo = Person("Giacamo Martino", born="1806", died="1852")
 jacques = Person("Jacques Martinez", born="1822", died="1891", mom=marge, dad=giacamo)
+
 joseph = Person("Joseph Martinez", born="1864", died="1926", mom=marie, dad=jacques)
+
 mildred = Person("Mildred Martinez", born="1911", died="1990", mom=louise, dad=joseph)
 jeanne_c = Person("Jeanne Chauvin", born="1840", died="1866")
 romain = Person("Romain Prévost", born="1832", died="1879")
@@ -43,5 +52,12 @@ santo = Person("Santo Riggitano", born="1824", died="c1898", mom=concetta, dad=g
 salvatore = Person("Salvatore Riggitano", born="1876", died="1960", mom=maria, dad=santo)
 louis = Person("Louis Prevost", born="1920", died="1997", mom=suzanne, dad=salvatore)
 leo = Person("Robert Prevost", born="1955", mom=mildred, dad=louis)
+
+adele = Person("Adele Martinez", mom=marie, dad=jacques)
+
+print(adele.is_sibling_of(joseph)) # should be true
+print(joseph.is_sibling_of(adele)) # should be true
+print(salvatore.is_sibling_of(louise)) # should be false
+
 #function inside a class is called a method 
 #function outside a class is just a function
