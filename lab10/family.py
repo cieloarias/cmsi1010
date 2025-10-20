@@ -11,7 +11,29 @@ class Person:
         same_dad = self.dad is not None and other.dad is not None and self.dad is other.dad
         # Half or full, we don't care
         return same_mom or same_dad  #you have a brother or sister if you have the same mom or dad so u write exactly that
+    
+    def is_parent_of(self, other):
+        """Return if this person is a parent of the other person."""
+        return other is not None and (other.mom is self or other.dad is self)
 
+    def is_child_of(self, other):
+        """Return if this person is a child of the other person."""
+        return other.is_parent_of(self)
+
+    def is_grandparent_of(self, other):
+        """Return if this person is a grandparent of another person."""
+        return other is not None and (
+            (other.mom is not None and self.is_parent_of(other.mom)) or
+            (other.dad is not None and self.is_parent_of(other.dad)))
+    
+    def print_family_tree(self, prefix="", level=0):
+        """Print the family tree starting from this person."""
+        indent = "    " * level
+        print(f"{prefix}{self.name} {self.born or '?'}-{self.died or '?'}")
+        if self.mom:
+            self.mom.print_family_tree(f"  {indent}mom: ", level + 1)
+        if self.dad:
+            self.dad.print_family_tree(f"  {indent}dad: ", level + 1)
 
     def __str__(self):
         span = f"({self.born or '?'}-{self.died or '?'})"
@@ -32,9 +54,7 @@ marie = Person("Marie Ramos", born="1826", died="1904", mom=julie, dad=agenor)
 marge = Person("Marguerite Cadeneth", born="1804", died="1870")
 giacamo = Person("Giacamo Martino", born="1806", died="1852")
 jacques = Person("Jacques Martinez", born="1822", died="1891", mom=marge, dad=giacamo)
-
 joseph = Person("Joseph Martinez", born="1864", died="1926", mom=marie, dad=jacques)
-
 mildred = Person("Mildred Martinez", born="1911", died="1990", mom=louise, dad=joseph)
 jeanne_c = Person("Jeanne Chauvin", born="1840", died="1866")
 romain = Person("Romain Prévost", born="1832", died="1879")
@@ -52,12 +72,18 @@ santo = Person("Santo Riggitano", born="1824", died="c1898", mom=concetta, dad=g
 salvatore = Person("Salvatore Riggitano", born="1876", died="1960", mom=maria, dad=santo)
 louis = Person("Louis Prevost", born="1920", died="1997", mom=suzanne, dad=salvatore)
 leo = Person("Robert Prevost", born="1955", mom=mildred, dad=louis)
-
 adele = Person("Adele Martinez", mom=marie, dad=jacques)
 
 print(adele.is_sibling_of(joseph)) # should be true
 print(joseph.is_sibling_of(adele)) # should be true
 print(salvatore.is_sibling_of(louise)) # should be false
+print(santo.is_child_of(giuseppe)) # should be true
+print(leo.is_child_of(louis)) # should be false
+
+leo.print_family_tree() # Person.print_family_tree()is the structure also u put the "." cuz it's a method
 
 #function inside a class is called a method 
 #function outside a class is just a function
+#va aponer en el examen lo de is_sibling_of 
+# "is" checks identity and the = checks the value 
+# a=b this means that whatever is in the b box will now be in the a box and after that if we write a is b wil now be true 
