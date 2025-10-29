@@ -87,3 +87,4 @@ leo.print_family_tree() # Person.print_family_tree()is the structure also u put 
 #va aponer en el examen lo de is_sibling_of 
 # "is" checks identity and the = checks the value 
 # a=b this means that whatever is in the b box will now be in the a box and after that if we write a is b wil now be true 
+# F is important when doing def __str(self): return f"(...)
